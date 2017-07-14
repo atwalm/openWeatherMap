@@ -9,7 +9,8 @@ var glocation =
   ul.id = "listContainer";*/
 
 function onloadFunc(){
-    const resp = JSON.parse(this.response);
+    //const resp = JSON.parse(this.response);
+    const resp = JSON.parse(this.response).body;
       console.log("Response ", resp);
     //  printListItem(resp.weather[0].description);
 
@@ -57,7 +58,10 @@ function onerrorFunc(){
 function getWeather(locObj) {
       console.log("Passed to GetWeather",locObj)
   //var apiURI = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=06170c100199dbae1e223cc3dfad960b";
-        let apiURI = `http://api.openweathermap.org/data/2.5/weather?lat=${locObj.lat}&lon=${locObj.lon}&APPID=178c8ef1013d5657ddfcc24ccf0e544c`;
+
+      //  let apiURI = `http://api.openweathermap.org/data/2.5/weather?lat=${locObj.lat}&lon=${locObj.lon}&APPID=178c8ef1013d5657ddfcc24ccf0e544c`;
+      let apiURI = `https://uwpce-weather-proxy.herokuapp.com/data/2.5/weather?lat=${locObj.lat}&lon=${locObj.lon}&APPID=178c8ef1013d5657ddfcc24ccf0e544c`;
+
         let request = new XMLHttpRequest();
         request.open("GET", apiURI, true);
         request.onload = onloadFunc;
